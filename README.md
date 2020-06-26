@@ -26,3 +26,5 @@ $ time ./powershuf.py -n 10 --file actual_dataset.csv > /dev/null
 $ time shuf -n 10 actual_dataset.csv > /dev/null
 shuf -n 10 actual_dataset.csv > /dev/null  8.27s user 1.81s system 99% cpu 10.149 total
 ```
+
+![Hits](https://hitcounter.pythonanywhere.com/count/tag.svg?url=https%3A%2F%2Fgitlab.com%2Faapjeisbaas%2Fshuf)
