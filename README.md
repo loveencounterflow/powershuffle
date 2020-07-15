@@ -28,3 +28,4 @@ shuf -n 10 actual_dataset.csv > /dev/null  8.27s user 1.81s system 99% cpu 10.14
 ```
 
 ![Hits](https://hitcounter.pythonanywhere.com/count/tag.svg?url=https%3A%2F%2Fgitlab.com%2Faapjeisbaas%2Fshuf)
+![Google Analytics](https://www.google-analytics.com/collect?v=1&tid=UA-48206675-1&cid=555&aip=1&t=event&ec=repo&ea=view&dp=gitlab%2Fshuf%2FREADME.md&dt=shuf)
