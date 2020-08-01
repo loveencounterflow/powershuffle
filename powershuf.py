@@ -4,11 +4,11 @@ import sys
 import random
 import argparse
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--file')
-parser.add_argument('-n')
-parser.add_argument('--min-len', dest='minLen', type=int, default=0)
-parser.add_argument('--max-len', dest='maxLen', type=int, default=float('inf'))
+parser = argparse.ArgumentParser(description="Returns random lines from text files, as fast as possible.")
+parser.add_argument('--file', required=True, help="the file to parse")
+parser.add_argument('-n', required=True, help="amount of lines you want to return")
+parser.add_argument('--min-len', dest='minLen', type=int, default=0, help="minimum line length, defaults to 0")
+parser.add_argument('--max-len', dest='maxLen', type=int, default=float('inf'), help="maximum line length, defaults to ∞")
 args = parser.parse_args()
 
 # len mistake catch
@@ -48,7 +48,8 @@ resultlines = 0
 
 fh = open(filename)
 while resultlines < int(args.n):
-    readstart = int(random.randint(0, int(totalLinesEst)) - bytesPerLine)
+    linestart = random.randint(0, int(totalLinesEst))
+    readstart = (linestart * bytesPerLine) - bytesPerLine
     if readstart < bytesPerLine:
         readstart = 0
     else:
