@@ -1,3 +1,14 @@
+Why?
+
+internet memes...
+
+[Reddit: The joys of StackOverflow](https://www.reddit.com/r/ProgrammerHumor/comments/gredk2/the_joys_of_stackoverflow/)
+
+![reddit](https://i.redd.it/7mztw70g59151.png)
+
+[My solution on stackoverflow](https://stackoverflow.com/questions/9245638/select-random-lines-from-a-file/)
+
+
 Well I couldn't leave it alone there must be a faster way....
 
 I have one, read a few lines of the file and get an avarage bits per line and the total file size.
