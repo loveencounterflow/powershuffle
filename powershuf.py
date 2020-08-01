@@ -14,32 +14,39 @@ filesizeBytes = os.path.getsize(filename)
 
 # you can find this with: sudo blockdev --getbsz $(df --output=source $(pwd) | grep '/')
 blockSize = 4096               # Bytes
-bitsInBlock = blockSize * 8    # Bits
 
 import random
 f = open(filename, "rt")
 count = 0
-sizeRead =0
+bytesRead = 0
 while (count < 10000):
-  buffer = f.read(bitsInBlock)
+  buffer = f.read(blockSize)
   if not buffer: break
   count += buffer.count('\n')
-  sizeRead += bitsInBlock
+  bytesRead += blockSize
 f.close()
 
-bitsPerLine = sizeRead/count
-#print(bitsPerLine)
+# less then 1 blocksize file fix
+if bytesRead > filesizeBytes:
+    bytesRead = filesizeBytes
 
-totalLinesEst = filesizeBytes / bitsPerLine
+bytesPerLine = bytesRead/count
+#print(bytesPerLine)
+
+totalLinesEst = filesizeBytes / bytesPerLine
 #print("Estimated lines in file: " + str(totalLinesEst))
 
+# exact outpout count
+resultlines = 0
+
 fh = open(filename)
-for i in range(int(args.n)):
-    readstart = int(random.randint(0, int(totalLinesEst)) - bitsPerLine)
-    if readstart < bitsPerLine:
+while resultlines < int(args.n):
+    readstart = int(random.randint(0, int(totalLinesEst)) - bytesPerLine)
+    if readstart < bytesPerLine:
         readstart = 0
     else:
         fh.seek(readstart)
     scratch = fh.readline()
     print(fh.readline(), end='', flush=True)
+    resultlines += 1
 fh.close()
