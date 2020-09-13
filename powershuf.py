@@ -46,16 +46,21 @@ totalLinesEst = filesizeBytes / bytesPerLine
 # exact output count
 resultlines = 0
 
-fh = open(filename)
+fh = open( filename, mode = 'rb' )
+# fh = open( filename, mode = 'r' )
 while resultlines < int(args.n):
     linestart = random.randint(0, int(totalLinesEst))
-    readstart = (linestart * bytesPerLine) - bytesPerLine
+    readstart = int( (linestart * bytesPerLine) - bytesPerLine )
     if readstart < bytesPerLine:
         readstart = 0
     else:
+        # print( f"^74464^ readstart:{readstart}")
         fh.seek(readstart)
     scratch = fh.readline()
-    line = fh.readline().replace('\n','')
+    line = fh.readline()
+    # print( f"^74464^ line:{line}")
+    # line = line.replace('\n','')
+    line = line.rstrip()
     while not (args.minLen <= len(line) <= args.maxLen):
         line = fh.readline().replace('\n','')
     print(line)
